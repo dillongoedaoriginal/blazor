@@ -9,7 +9,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-primary" onclick=@(()=>Enqueue("video"))>Request Video</button>
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("video"))>Capture Video</button>
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("image"))>Capture Image</button>
             <button class="btn btn-primary" onclick=@(()=>Enqueue("ip"))>Request IP Addres</button>
             <button class="btn btn-primary" onclick=@(()=>Enqueue("reboot"))>Reboot</button>
             <button class="btn btn-primary" onclick=@(()=>Enqueue("shutdown"))>Shutdown</button>
@@ -17,10 +18,14 @@
     </div>
 
     <div style="margin-top:20px;" class="row">
-        <div class="col-md-12">
-            <video controls>
+        <div class="col-sm-5">
+            <video style="height:350px;" controls>
                 <source src=@Config["VideoUrl"] />
             </video>
+        </div>
+
+        <div class="col-sm-5 col-sm-offset-2">
+            <img style="height:350px;"  src="https://tsitsikammabookings.blob.core.windows.net/pythonsdk/img.jpg"/>
         </div>
     </div>
 </div>
