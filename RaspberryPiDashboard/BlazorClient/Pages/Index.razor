@@ -1,0 +1,37 @@
+﻿@page "/"
+@using Manager;
+@using Microsoft.Extensions.Configuration;
+
+@inject IEnqueueable<string> Enqueueable
+@inject IConfiguration Config
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("video"))>Request Video</button>
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("ip"))>Request IP Addres</button>
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("reboot"))>Reboot</button>
+            <button class="btn btn-primary" onclick=@(()=>Enqueue("shutdown"))>Shutdown</button>
+        </div>
+    </div>
+
+    <div style="margin-top:20px;" class="row">
+        <div class="col-md-12">
+            <video controls>
+                <source src=@Config["VideoUrl"] />
+            </video>
+        </div>
+    </div>
+</div>
+
+@code{
+
+    private async void Enqueue(string command)
+    {
+        await Enqueueable.EnqueueAsync(command);
+    }
+
+}
+
+
